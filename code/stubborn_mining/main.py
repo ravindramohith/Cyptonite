@@ -23,18 +23,19 @@ if __name__ == "__main__":
 
     # Visualizing the blockchain if "--visualize-blockchain" is in command-line arguments
     if "--visualize-blockchain" in sys.argv:
-        index = input("Enter the index of the node you want to visualize: ")
-        if index.isdigit():
-            index = int(index)
-            # Checking if the entered index is within the range of nodes
-            if index < len(simulator.nodes):
-                # Visualizing the blockchain of the specified node
-                simulator.nodes[index].blockchain.visualize(index)
+        while True:
+            index = input("Enter the index of the node you want to visualize: ")
+            if index.isdigit():
+                index = int(index)
+                # Checking if the entered index is within the range of nodes
+                if index < len(simulator.nodes):
+                    # Visualizing the blockchain of the specified node
+                    simulator.nodes[index].blockchain.visualize(index)
+                else:
+                    print(
+                        f"Invalid index. Index should be an integer from 0 to {int(sys.argv[2]) - 1}"
+                    )
             else:
                 print(
                     f"Invalid index. Index should be an integer from 0 to {int(sys.argv[2]) - 1}"
                 )
-        else:
-            print(
-                f"Invalid index. Index should be an integer from 0 to {int(sys.argv[2]) - 1}"
-            )

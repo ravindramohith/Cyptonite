@@ -15,8 +15,8 @@ class Simulator:
         min_transactions_per_mining=3,
         transaction_mean_gap=15,
         max_events=100,
-        attacker_hash1=0.3,
-        attacker_hash2=0.27,
+        attacker_hash1=0,
+        attacker_hash2=0,
     ):
         """
         Initialize a Simulator object.
@@ -43,7 +43,7 @@ class Simulator:
         att1, att2 = generate_distinct_random_numbers(n)
         self.att1, self.att2 = att1, att2
         # Initialize nodes and peers
-        print(att1, att2)
+        print("attacker nodes: ", att1, ", ", att2)
         for i in range(n):
             node = None
             if i == att1:

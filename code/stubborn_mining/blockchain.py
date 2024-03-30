@@ -2,6 +2,7 @@ import hashlib
 import matplotlib.pyplot as plt
 import networkx as nx
 from datetime import datetime
+import random
 
 
 class Block:
@@ -28,13 +29,14 @@ class Blockchain:
 
     def create_block(self, transactions, node_id):
         # Create a new block with transactions
+        temp = str(random.getrandbits(32))
         transactions_string = "".join(
             [
                 str(txn.sender) + str(txn.receiver) + str(txn.amount)
                 for txn in transactions[:-1]
             ]
         )
-        block_id = hashlib.sha1(transactions_string.encode()).hexdigest()
+        block_id = hashlib.sha256((transactions_string + temp).encode()).hexdigest()
 
         if not self.blocks:
             previous_block_id = None

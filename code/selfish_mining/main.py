@@ -12,8 +12,8 @@ if __name__ == "__main__":
         min_transactions_per_mining=10,  # Minimum transactions per mining
         transaction_mean_gap=int(sys.argv[8]),  # Transaction mean gap
         max_events=10000,  # Maximum number of events
-        attacker_hash1=0,  # Attacker 1 hashing power
-        attacker_hash2=0,  # Attacker 2 hashing power
+        attacker_hash1=float(sys.argv[10]),  # Attacker 1 hashing power
+        attacker_hash2=float(sys.argv[12]),  # Attacker 2 hashing power
     )
 
     attacker_1 = simulator.att1
@@ -33,8 +33,8 @@ if __name__ == "__main__":
     # Visualizing the blockchain if "--visualize-blockchain" is in command-line arguments
     if "--visualize-blockchain" in sys.argv:
         while True:
-            index = input("Enter the index of the node you want to visualize: ")
-            if(index == "exit"):
+            index = input("Enter the index of the node you want to visualize [Press enter to exit]: ")
+            if(index == ""):
                 break
             if index.isdigit():
                 index = int(index)
@@ -90,7 +90,7 @@ if __name__ == "__main__":
                     atb2 += 1
             longest_chain = current_chain
 
-    print(f"length of longest chain: {len(longest_chain)}, A1 {tat1}, A2 {tat2}")
+    print(f"length of longest chain: {len(longest_chain)}")
     print(f"length of attacker 1 blocks: {atb1}", "MPU1(adv): ", atb1/tbl)
     print(f"length of attacker 2 blocks: {atb2}", "MPU2(adv): ", atb2/tbl)
     print(f"length of total blocks: {tb}", "MPU(total): ", tbl/tb)
